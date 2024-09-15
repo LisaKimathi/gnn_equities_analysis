@@ -345,7 +345,7 @@ print(G)
 
 # Visualise graph
 plt.figure(figsize=(10, 10))
-pos = nx.spring_layout(G, seed=42)  # spring_layout positions nodes using Fruchterman-Reingold force-directed algorithm
+pos = nx.spring_layout(G, seed=42)  
 nx.draw_networkx_nodes(G, pos, node_size=20, node_color='blue')
 nx.draw_networkx_edges(G, pos, alpha=0.3)
 plt.title("Graph Visualization")
