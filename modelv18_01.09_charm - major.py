@@ -257,8 +257,8 @@ year2015_tensor = torch.tensor(year2015, dtype=torch.float)
 # yf14_shape:  torch.Size([222])
 # yf15_shape:  torch.Size([222])
 
-yf_repeated = year_tensor.repeat_interleave(len(merge_df['Company']), dim=0)  # shape becomes (3777 * number of years,)
-year_feature = yf_repeated.reshape(len(merge_df['Company']), -1)  # reshape to (3777, number of years)
+yf_repeated = year_tensor.repeat_interleave(len(merge_df['Company']), dim=0)  # shape = 3777 * number of years
+year_feature = yf_repeated.reshape(len(merge_df['Company']), -1)  
 # print('yf_shape: ', year_feature.shape)
 # print(type(year_feature))
 # print('yf: ', year_feature)
@@ -275,7 +275,7 @@ cf_shape:  torch.Size([1, 3777])
 # Concatenate sector and company feature along the feature dimension
 # node_features = torch.cat([sector_feature, company_feature], dim=1).float()      # torch.Size([447, 7554])
 node_features = torch.cat((sector_feature, company_feature), 1)  # torch.Size([447, 7554])
-# node_features = np.hstack((sector_feature, company_numeric, year_feature)) # numpy array of node features
+# node_features = np.hstack((sector_feature, company_numeric, year_feature)) # numpy array 
 # print(type(node_features))  # torch.Tensor
 # print('nf_shape: ', node_features.shape)  # torch.Size([447, 7554])
 # print('nf: ', node_features)
@@ -364,7 +364,7 @@ Graph.add_edges_from(edges)
 # Visualise graph
 def visualise_graph(G):
     plt.figure(figsize=(10, 10))
-    pos = nx.spring_layout(G)  # spring_layout positions nodes using Fruchterman-Reingold force-directed algorithm
+    pos = nx.spring_layout(G)  
     nx.draw(G, pos, node_size=50, node_color="skyblue", edge_color="yellow")
     # nx.draw_networkx(G, pos, with_labels=True, node_size=50, node_color="green", alpha=0.5, width=0.9, edge_cmap=plt.cm.Blues)
     plt.title("Graph Visualization")
@@ -375,11 +375,11 @@ def visualise_graph(G):
 '''
 def visualise_graph(G):
     plt.figure(figsize=(10, 10))
-    pos = nx.spring_layout(G)  # spring_layout positions nodes using Fruchterman-Reingold force-directed algorithm
+    pos = nx.spring_layout(G)  
     nx.draw_networkx_nodes(G, pos, node_size=20, node_color="blue")
     nx.draw_networkx_edges(G, pos, alpha=0.3, edge_color="green")
     plt.title("Graph Visualization")
-    plt.savefig("graph_fig.png")  # Save the plot as an image file
+    plt.savefig("graph_fig.png")  # Save the plot 
     plt.close()  
     plt.show()
 
@@ -389,7 +389,7 @@ Gr = to_networkx(dataset, to_undirected=True)
 visualise_graph(Gr)
 # ########################################## Why are the graphs looking slightly different?
 # Check different draw options and edge cmap
-# See visualisation code from pytorch geometric: https://github.com/pyg-team/pytorch_geometric/blob/master/torch_geometric/visualization/graph.py
+# See visualisation example from pytorch geometric: https://github.com/pyg-team/pytorch_geometric/blob/master/torch_geometric/visualization/graph.py
 
 
 # Implement the Graph Neural Network section
